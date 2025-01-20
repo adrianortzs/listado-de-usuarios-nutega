@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de administración</title>
+  <link rel="stylesheet" href="style/admin.css">
+  <link rel="stylesheet" href="style/dashboard.css">
+</head>
+<body>
+  <header>
+    <img src="images/nutega.jpeg" alt="Logo Nutega" class="company-logo" />
+    <div class="user-section">
+      <img id="userLogo" src="" alt="Logo Usuario" class="user-logo" />
+      <button class="logout-btn" id="logoutBtn">Cerrar sesión</button>
+    </div>
+  </header>
+  <h1>Lista de Usuarios</h1>
+  <div id="userList"></div>
+
+  <button id="createUserBtn">Crear Usuario</button>
+
+  <div id="createUserModal" class="modal">
+    <div class="modal-content">
+      <h2>Crear Nuevo Usuario</h2>
+      <input type="text" id="newUsername" placeholder="Nombre de usuario">
+      <input type="password" id="newPassword" placeholder="Contraseña">
+      <input type="url" id="newLogo" placeholder="URL del logo">
+      <input type="url" id="newIframeURL" placeholder="URL del iframe">
+      <button id="confirmCreateUserBtn">Crear</button>
+    </div>
+  </div>
+
+  <script src="script/admin.js"></script>
+</body>
+</html>

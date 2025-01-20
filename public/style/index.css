@@ -1,0 +1,104 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+  
+body {
+    font-family: "Arial", sans-serif;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+header {
+    margin-bottom: 50px; 
+}
+
+.company-logo {
+    height: 70px;
+    object-fit: contain; 
+}
+
+.login-container, .recover-container, .reset-container {
+    background: #FFFFFF;
+    width: 300px;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); 
+}
+
+.login-container label {
+    font-weight: bold;
+    color: #606060;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.login-container a {
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+    color: #606060;
+}
+
+#loginBtn {
+    margin-top: 30px;
+}
+
+.btn {
+    width: 100%;
+    padding: 10px 0;
+    background-color: #005BAA;
+    color: #FFFFFF;
+    font-weight: bold;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background-color 0.3s;
+}
+
+#errorMsg, #recoverMsg, #resetMsg {
+    margin-top: 15px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    color: #606060;
+}
+
+.recover-container label, .reset-container label {
+    font-weight: bold;
+    color: #606060;
+}
+
+.recover-container input[type="email"],
+.reset-container input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.recover-container p, .reset-container p {
+    font-weight: bold;
+    font-size: 17px;
+    color: #606060;
+    margin-bottom: 2rem;
+    text-align: center;
+}

@@ -1,0 +1,22 @@
+{
+  "admin": {
+    "password": "adminpass",
+    "role": "admin",
+    "logo": "https://c0.klipartz.com/pngpicture/668/617/gratis-png-logotipo-de-la-marca-movistar-empresa-bimbo.png",
+    "iframeURL": "https://www.marca.com/",
+    "email": "admin@example.com"
+  },
+  "usuario2": {
+    "password": "pass2",
+    "role": "user",
+    "logo": "https://logosmarcas.net/wp-content/uploads/2020/04/Amazon-Logo.png",
+    "iframeURL": "https://app.powerbi.com/",
+    "email": "adrianortizsuarez3@gmail.com"
+  },
+  "marca2": {
+    "password": "marca2",
+    "role": "user",
+    "logo": "https://th.bing.com/th/id/R.5f528b2a54430a3ccdca3866fb51fea1?rik=Na27yWVyFLJ1Xw&riu=http%3a%2f%2flogos-download.com%2fwp-content%2fuploads%2f2016%2f05%2fMarca_logo_white_red_background.png&ehk=4x%2bd%2b8wxZX00y7zwL73uHQM1UowofNsvSsE%2fBv6at6I%3d&risl=&pid=ImgRaw&r=0",
+    "iframeURL": "https://www.marca.com/"
+  }
+}
