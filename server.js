@@ -51,7 +51,7 @@ function saveUsersToFile() {
   fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2));
 }
 
-app.get('https://listado-de-usuarios-nutega.onrender.com/userinfo', (req, res) => {
+app.get('/userinfo', (req, res) => {
   const authHeader = req.headers['authorization']
 
   if (!authHeader) {
@@ -79,7 +79,7 @@ app.get('https://listado-de-usuarios-nutega.onrender.com/userinfo', (req, res) =
   })
 })
 
-app.get('https://listado-de-usuarios-nutega.onrender.com/admin/users', (req, res) => {
+app.get('/admin/users', (req, res) => {
   const authHeader = req.headers['authorization'];
 
   if (!authHeader) {
@@ -114,7 +114,7 @@ app.get('https://listado-de-usuarios-nutega.onrender.com/admin/users', (req, res
 });
 
 
-app.post('https://listado-de-usuarios-nutega.onrender.com/login', (req, res) => {
+app.post('/login', (req, res) => {
   const { username, password } = req.body
 
   if (!users[username]) {
@@ -134,7 +134,7 @@ app.post('https://listado-de-usuarios-nutega.onrender.com/login', (req, res) => 
   res.json({ redirect: '/dashboard.html', token })
 })
 
-app.post('https://listado-de-usuarios-nutega.onrender.com/admin/users', (req, res) => {
+app.post('/admin/users', (req, res) => {
   const authHeader = req.headers['authorization'];
   const { username, password, logo, iframeURL } = req.body;
 
@@ -178,7 +178,7 @@ app.post('https://listado-de-usuarios-nutega.onrender.com/admin/users', (req, re
 });
 
 
-app.post('https://listado-de-usuarios-nutega.onrender.com/reset-password/:token', async (req, res) => {
+app.post('/reset-password/:token', async (req, res) => {
   const { token } = req.params
   const { password, confirmPassword } = req.body
   
@@ -202,7 +202,7 @@ app.post('https://listado-de-usuarios-nutega.onrender.com/reset-password/:token'
 })
 
 
-app.post('https://listado-de-usuarios-nutega.onrender.com/recover-password', async (req, res) => {
+app.post('/recover-password', async (req, res) => {
     const { email } = req.body
     const user = Object.values(users).find(user => user.email === email)
   
@@ -242,7 +242,7 @@ app.post('https://listado-de-usuarios-nutega.onrender.com/recover-password', asy
     }
 })
 
-app.put('https://listado-de-usuarios-nutega.onrender.com/admin/users/:username', (req, res) => {
+app.put('/admin/users/:username', (req, res) => {
   const { username } = req.params;
   const { logo, iframeURL } = req.body;
 
@@ -257,7 +257,7 @@ app.put('https://listado-de-usuarios-nutega.onrender.com/admin/users/:username',
   res.json({ message: 'Usuario actualizado correctamente', user: users[username] });
 });
 
-app.delete('https://listado-de-usuarios-nutega.onrender.com/admin/users/:username', (req, res) => {
+app.delete('/admin/users/:username', (req, res) => {
   const { username } = req.params;
 
   if (!users[username]) {
