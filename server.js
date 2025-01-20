@@ -34,7 +34,7 @@ let users = {
     password: 'pass2',
     role: 'user',
     logo: 'https://logosmarcas.net/wp-content/uploads/2020/04/Amazon-Logo.png',
-    iframeURL: 'https://app.powerbi.com/',
+    iframeURL: 'https://app.powerbi.com/view?r=eyJrIjoiNTY5NWEwMzItYmI5ZS00OWYxLTliZGQtMTI3NmM1NzgyNjIyIiwidCI6ImZmMTA1ZDRmLTAzOWYtNDQ0Zi1iZDZmLTBlZDFlMzVkYWVmNCIsImMiOjh9',
     email: 'adrianortizsuarez3@gmail.com',
   },
 }
