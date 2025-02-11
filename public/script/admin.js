@@ -1,81 +1,89 @@
-const userListDiv = document.getElementById('userList')
+const usersList = document.getElementById('usersList')
 const token = localStorage.getItem('token')
+  
+document.getElementById('confirmCreateUserBtn').addEventListener('click', createUser)
+
+document.getElementById("createUserBtn").addEventListener("click", function() {
+  document.getElementById("popup").classList.add("active")
+})
+
+document.querySelector(".close-btn").addEventListener("click", function() {
+  document.getElementById("popup").classList.remove("active")
+})
+
+const logoutBtn = document.getElementById('logoutBtn')
+logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem('token')
+    window.location.href = 'index.html'
+})
 
 async function loadUsers() {
   try {
-    const response = await fetch('/admin/users', {
+    const response = await fetch('/usuarios', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    });
+    })
 
     if (!response.ok) {
       if (response.status === 403) {
-        alert('No tienes permisos para acceder a esta página.');
-        window.location.href = '/login.html';
+        alert('No tienes permisos para acceder a esta página.')
+        window.location.href = '/login.html'
       }
-      throw new Error('Error al cargar usuarios');
+      throw new Error('Error al cargar los usuarios')
     }
 
-    const users = await response.json();
-    userListDiv.innerHTML = users.map(user => `
+    const users = await response.json()
+    usersList.innerHTML = users.map(user => `
       <div class="user-card">
-        <img src="${user.logo}" alt="${user.username} Logo" class="user-logo">
-        <p><strong>Usuario:</strong> ${user.username}</p>
-        <p><strong>Iframe:</strong> ${user.iframeURL}</p>
-        <button onclick="editUser('${user.username}')">Editar</button>
-        <button onclick="deleteUser('${user.username}')">Eliminar</button>
+        <img src="${user.url_logo}" alt="${user.email}" class="user-logo">
+        <p><strong>Usuario:</strong> ${user.email}</p>
+        <button onclick="editUser('${user.email}')">Editar</button>
+        <button onclick="deleteUser('${user.email}')">Eliminar</button>
       </div>
-    `).join('');
+    `).join('')
   } catch (error) {
-    console.error(error);
+    console.error(error)
   }
 }
 
 async function createUser() {
-  const username = document.getElementById('newUsername').value;
-  const password = document.getElementById('newPassword').value;
-  const logo = document.getElementById('newLogo').value;
-  const iframeURL = document.getElementById('newIframeURL').value;
-
-  const requestBody = { username, password, logo, iframeURL };
-  console.log('Datos enviados:', requestBody);
+  const username = document.getElementById('newUsername').value
+  const password = document.getElementById('newPassword').value
+  const logo = document.getElementById('newLogo').value
+  const iframeURL = document.getElementById('newIframeURL').value
 
   try {
-    const response = await fetch('/admin/users', {
+    const response = await fetch('/usuarios', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ username, password, logo, iframeURL }),
-    });
+    })
 
-    if (!response.ok) throw new Error('Error al crear usuario');
+    if (!response.ok) throw new Error('Error al crear usuario')
 
-    alert('Usuario creado con éxito');
-    document.getElementById('newUsername').value = '';
-    document.getElementById('newPassword').value = '';
-    document.getElementById('newLogo').value = '';
-    document.getElementById('newIframeURL').value = '';
-
-    // Cierra el modal
-    document.getElementById('createUserModal').style.display = 'none';
-    const overlay = document.querySelector('.modal-overlay');
-    if (overlay) overlay.remove();
-    loadUsers();
+    alert('Usuario creado con éxito')
+    document.getElementById('newUsername').value = ''
+    document.getElementById('newPassword').value = ''
+    document.getElementById('newLogo').value = ''
+    document.getElementById('newIframeURL').value = ''
+    document.getElementById("popup").classList.remove("active")
+    loadUsers()
   } catch (error) {
-    console.error(error);
-    alert('No se pudo crear el usuario');
+    console.error(error)
+    alert('No se pudo crear el usuario')
   }
 }
 
-async function editUser(username) {
+async function editUser(user) {
   const newLogo = prompt('Introduce la nueva URL del logo:')
   const newIframeURL = prompt('Introduce la nueva URL del iframe:')
 
   try {
-    const response = await fetch(`/admin/users/${username}`, {
+    const response = await fetch(`/usuarios/${user}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -97,11 +105,11 @@ async function editUser(username) {
   }
 }
 
-async function deleteUser(username) {
-  if (!confirm(`¿Seguro que deseas eliminar a ${username}?`)) return
+async function deleteUser(user) {
+  if (!confirm(`¿Seguro que deseas eliminar a ${user}?`)) return
 
   try {
-    const response = await fetch(`/admin/users/${username}`, {
+    const response = await fetch(`/usuarios/${user}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`,
@@ -119,17 +127,3 @@ async function deleteUser(username) {
 }
 
 loadUsers()
-
-document.getElementById('createUserBtn').addEventListener('click', () => {
-  document.getElementById('createUserModal').style.display = 'block';
-  const overlay = document.createElement('div');
-  overlay.classList.add('modal-overlay');
-  document.body.appendChild(overlay);
-
-  overlay.addEventListener('click', () => {
-    document.getElementById('createUserModal').style.display = 'none';
-    document.body.removeChild(overlay);
-  });
-});
-
-document.querySelector('#createUserModal button').addEventListener('click', createUser);

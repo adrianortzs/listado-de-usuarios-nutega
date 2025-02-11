@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   
     try {
-      const response = await fetch('/userinfo', {
+      const response = await fetch('/usuarios', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
